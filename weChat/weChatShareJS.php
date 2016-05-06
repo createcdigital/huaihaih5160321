@@ -40,7 +40,7 @@
                                  url: "http://www.createcdigital.com/huaihaih5160321/", 
                                  icon: "http://www.createcdigital.com/huaihaih5160321/img/share-icon.jpg"
                             };
-    app.wechat.sharecontent_en = {title: "Le Rendez-vous ",
+    app.wechat.sharecontent_en = {title: "LE RENDEZ-VOUS ",
                                   desc:"Immerse yourself in a world of fashion, follow your hearts desire",
                                   titleformoment:"Immerse yourself in a world of fashion, follow your hearts desire", 
                                   url: "http://www.createcdigital.com/huaihaih5160321/enindex.php", 

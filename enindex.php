@@ -18,7 +18,7 @@
 <!-- <html lang="en" manifest="app.appcache"> -->
 <head>
 	<meta charset="UTF-8">
-	<title>Le Rendez-vous </title>
+	<title>LE RENDEZ-VOUS </title>
 	<meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="width=640, user-scalable=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes" />
