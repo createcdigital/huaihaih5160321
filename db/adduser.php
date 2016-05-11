@@ -11,7 +11,6 @@
 	// $email           = $_GET['email'];
 	// $adate          = $_GET['adate'];
 
-	
 
 	include_once 'connect.php';
 
@@ -24,42 +23,55 @@
 
 	// wechat user info from session
 	$openid          = $_POST['openid'];
+	$token           = $_POST['token'];
+	$_token          = $_SESSION['token'];
 
 	// operation time
 	$adate           = date("Y-m-d H:i:s",time());
 
-	if ($stmt = $mysqli->prepare("SELECT phone FROM user WHERE openid=? and phone=?")) {
+	if($token === $_token)
+	{
+		if(isset($trade, $brand, $name, $phone, $email, $openid, $adate))
+		{
 
-        // Bind the variables to the parameter as strings.
-        $stmt->bind_param("ss", $openid,$phone);
+			if ($stmt = $mysqli->prepare("SELECT phone FROM user WHERE openid=? and phone=?")) {
 
-        /* execute query */
-        if($stmt->execute()){
-        	/* bind result variables */
-        	$stmt->bind_result($phones);
-			/* fetch value */
-	        $stmt->fetch();
-	        // response json data
-			if(isset($phones))
-	        {
-	        	echo json_encode(array('code'=>1));
-	        }else{
-	        	if ($stmt = $mysqli->prepare("INSERT INTO user (trade,brand,name,phone,email,adate,openid) VALUES(?,?,?,?,?,?,?)")){
-					// Bind the variables to the parameter as strings.
-				    $stmt->bind_param("sssssss", $trade,$brand,$name,$phone,$email,$adate,$openid);
-				    if($stmt->execute()){
-				        /* fetch value */
-					    echo json_encode(array('code'=>0));
-				    }else{
-				    	echo json_encode(array('code'=>2));
-				    }
+		        // Bind the variables to the parameter as strings.
+		        $stmt->bind_param("ss", $openid,$phone);
+
+		        /* execute query */
+		        if($stmt->execute()){
+		        	/* bind result variables */
+		        	$stmt->bind_result($phones);
+					/* fetch value */
+			        $stmt->fetch();
+			        // response json data
+					if(isset($phones))
+			        {
+			        	echo json_encode(array('code'=>1));
+			        }else{
+			        	if ($stmt = $mysqli->prepare("INSERT INTO user (trade,brand,name,phone,email,adate,openid) VALUES(?,?,?,?,?,?,?)")){
+							// Bind the variables to the parameter as strings.
+						    $stmt->bind_param("sssssss", $trade,$brand,$name,$phone,$email,$adate,$openid);
+						    if($stmt->execute()){
+						        /* fetch value */
+							    echo json_encode(array('code'=>0));
+						    }else{
+						    	echo json_encode(array('code'=>2));
+						    }
+						}
+			        }
+				}else{
+					echo json_encode(array('code'=>3));
 				}
-	        }
+			}else{
+				echo json_encode(array('code'=>4));
+			}
+			$stmt->close();
 		}else{
-			echo json_encode(array('code'=>3));
+			echo json_encode(array('code'=>4));
 		}
 	}else{
-		echo json_encode(array('code'=>4));
+		echo json_encode(array('code'=>9));
 	}
-	$stmt->close();
 ?>

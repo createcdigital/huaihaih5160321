@@ -1,17 +1,23 @@
 <?php 
 
     session_start();
-     $_SESSION['url'] = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
-     if(!isset($_SESSION["openid"]))
-     {
+
+    $token = uniqid();
+    $_SESSION['token'] = $token;
+
+    $_SESSION['url'] = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
+    if(!isset($_SESSION["openid"]))
+    {
         include_once 'weChat/weChatAutho.php';
-     }else
-     {
+    }else
+    {
     //     // userinfo
     //     /*echo 'openid:'.$_SESSION['openid'] . '<br />';
     //     echo 'headimgurl:'.$_SESSION['img'] . '<br />';
     //     echo 'nickname:'.$_SESSION['nickname'] . '<br />';*/
      }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,6 +87,7 @@
       </li>
      </ul>
     </div>
+    <input type="password" id="_token" value="<?php echo $token; ?>" class="hide">
     <input id="trade" type="text" class="in-1 e-1" placeholder="请输入您的行业">
     <input id="brand" type="text" class="in-1 e-2" placeholder="请输入您的品牌">
     <input id="name"  type="text" class="in-1 e-3" placeholder="请输入您的姓名">

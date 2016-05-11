@@ -1,6 +1,10 @@
 <?php 
 
     session_start();
+
+    $token = uniqid();
+    $_SESSION['token'] = $token;
+
      $_SESSION['url'] = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
      if(!isset($_SESSION["openid"]))
      {
@@ -81,6 +85,7 @@
       </li>
      </ul>
     </div>
+    <input type="password" id="_token" value="<?php echo $token; ?>" class="hide">
     <input id="trade1" type="text" class="in-1 e-1" >
     <input id="brand1" type="text" class="in-1 e-2" >
     <input id="name1"  type="text" class="in-1 e-3" >

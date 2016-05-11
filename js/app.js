@@ -147,8 +147,9 @@ app.p1.bind_touch_event = function(){
         }
         $(".p1 .hit").html(lg[4]);
         var openid = $OPENID;
-        $.post("db/adduser.php", {name: name,email: email,phone: phone,trade: trade,brand: brand,openid:openid},function(r){                
-            console.log(r);
+        var token = $("#_token").val();
+        $.post("db/adduser.php", {name: name,email: email,phone: phone,trade: trade,brand: brand,openid:openid,token: token},function(r){                
+
             if(r.code == "0"){
                 $(".p1 .hit").html(lg[5]);
             }else if(r.code == "1"){
@@ -208,7 +209,8 @@ app.p2.bind_touch_event = function(){
         }
         $(".p2 .hit1").html(enlg[1]);
         var openid = $OPENID;
-        $.post("db/adduser.php", {name: name,email: email,phone: phone,trade: trade,brand: brand,openid:openid},function(r){                
+        var token = $("#_token").val();
+        $.post("db/adduser.php", {name: name,email: email,phone: phone,trade: trade,brand: brand,openid:openid, token:token},function(r){                
             console.log(r);
             if(r.code == "0"){
                 $(".p2 .hit1").html(enlg[2]);
